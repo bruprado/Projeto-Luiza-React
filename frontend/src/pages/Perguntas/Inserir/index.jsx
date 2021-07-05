@@ -7,9 +7,7 @@ export default function InserirPergunta() {
         pergunta: {
             idFormulario: '',
             textoPergunta: '',
-            tipoText: true,
-            tipoRadio: false,
-            tipoBoolean: false
+            tipo: ''
         }
     });
     const [redirect, setRedirect] = useState(false);
@@ -17,12 +15,17 @@ export default function InserirPergunta() {
     const handleInputChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
+        
         setState({
             pergunta: {
                 ...state.pergunta, [name]: value
             }
         })
+        console.log(name)
+        console.log(value)
     }
+
+    
 
     const handleSubmit = (e) => {
         const req = state.pergunta;
@@ -68,41 +71,21 @@ export default function InserirPergunta() {
                         <label>Pergunta</label>
                         <input
                             type='text'
-                            name='pergunta'
+                            name='textoPergunta'
                             className='form-control'
                             placeholder="pergunta"
                             required
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="col-md-3">
-                        <label>Resposta em Texto?</label>
+                    <div className="form-group">
+                        <label>Tipo</label>
                         <input
-                            type='radio'
-                            name='tipoText'
-                            className='col-md-2'
-                            
-                            value="true"
-                            checked={state.pergunta.tipoText === 'true'}
-                            onChange={handleInputChange}
-                        />
-                        <label>Resposta multipla escolha</label>
-                        <input
-                            type='radio'
-                            name='tipoRadio'
-                            className='col-md-2'
-                            
-                            value="false"
-                            checked={state.pergunta.tipoRadio === 'false'}
-                            onChange={handleInputChange}
-                        />
-                        <label>Resposta multipla escolha</label>
-                        <input
-                            type='radio'
-                            name='tipoBoolean'
-                            className='col-md-2'
-                            value="false"
-                            checked={state.pergunta.tipoBoolean === 'false'}
+                            type='text'
+                            name='tipo'
+                            className='form-control'
+                            placeholder="tipo da pergunta"
+                            required
                             onChange={handleInputChange}
                         />
                     </div>

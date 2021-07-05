@@ -26,22 +26,10 @@ const Perguntas = sequelize.define('perguntas', {
             len: [3, 255] //define tamanho minimo e maximo do campo
         }
     },
-    tipoText: {
+    tipo: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-    }
-    ,
-    tipoRadio: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-    }
-    ,
-    tipoBoolean: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        type: Sequelize.STRING(255),
+        defaultValue: "texto",
     }
 });
 

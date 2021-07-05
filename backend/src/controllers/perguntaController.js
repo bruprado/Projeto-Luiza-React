@@ -8,17 +8,13 @@ exports.Insert = (req, res, next) => {
     //lembrando que id é auto incrementavel, nao precisa chama-lo
     const idFormulario = req.body.idFormulario;
     const textoPergunta = req.body.textoPergunta;
-    const tipoText = req.body.tipoText;
-    const tipoRadio = req.body.tipoRadio;
-    const tipoBoolean = req.body.tipoBoolean;
+    const tipo = req.body.tipo;
 
     //Sequelize ira enviar os dados atraves do comando create. create é para inserir
     Perguntas.create({
         idFormulario: idFormulario, //nome da chave : constante criada acima
         textoPergunta: textoPergunta,
-        tipoText: tipoText,
-        tipoRadio: tipoRadio,
-        tipoBoolean: tipoBoolean
+        tipo: tipo
     }).then(
         (pergunta) => {
             if (pergunta) {
@@ -33,7 +29,6 @@ exports.Insert = (req, res, next) => {
             error = next(error)
         }
     )
-
 }
 
 exports.SearchAll = (req, res, next) => {

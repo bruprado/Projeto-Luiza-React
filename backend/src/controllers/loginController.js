@@ -1,9 +1,12 @@
-// const mysql = require("mysql2");
-// const jwt = require("jsonwebtoken");
-// const bcrypt = require("bcryptjs");
+const mysql = require("mysql2");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
+const Usuarios = require('../models/usuarios');
+const status = require('http-status');
 
 
-// // fazendo logout
+// fazendo logout
 // exports.logout = async (req, res) => {
 //     try {
 //         res.clearCookie("jwt");
@@ -15,7 +18,33 @@
 //     }
 // }
 
-// // realizando login
+exports.SearchAll = (req, res, next) => {
+    const { login, senha } = req.body;
+        
+        if (!login || !senha) {
+            return res.status(400).render("/", {
+                message: "Por favor insira um usuário e uma senha"
+            });
+        }
+
+
+
+    Usuarios.findAll()
+        .then(
+            (usuario) => {
+                if (usuario) {
+                    res.status(status.OK).send(usuario).render("/usuarios");
+                }
+            }
+        ).catch(
+            () => {
+                error = next(error)
+            }
+        )
+}
+
+
+// realizando login
 // exports.login = async (req, res) => {    
 //     try {
 //         const { name, password } = req.body;
